@@ -44,8 +44,19 @@ namespace wpf_book.Services
                 var contacts = JsonConvert.DeserializeObject<List<Contact>>(json);
                 return contacts ?? new List<Contact>();
             }
-            catch
+            catch (JsonException ex)
             {
+                System.Diagnostics.Debug.WriteLine($"JSON deserialization error: {ex.Message}");
+                return new List<Contact>();
+            }
+            catch (IOException ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"File I/O error: {ex.Message}");
+                return new List<Contact>();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Unexpected error loading contacts: {ex.Message}");
                 return new List<Contact>();
             }
         }
@@ -64,8 +75,19 @@ namespace wpf_book.Services
                 throw new FileNotFoundException("Import file not found.", importPath);
             }
 
-            var json = File.ReadAllText(importPath);
-            contacts = JsonConvert.DeserializeObject<List<Contact>>(json) ?? new List<Contact>();
+            try
+            {
+                var json = File.ReadAllText(importPath);
+                contacts = JsonConvert.DeserializeObject<List<Contact>>(json) ?? new List<Contact>();
+            }
+            catch (JsonException ex)
+            {
+                throw new InvalidDataException($"Invalid JSON format in import file: {ex.Message}", ex);
+            }
+            catch (IOException ex)
+            {
+                throw new IOException($"Error reading import file: {ex.Message}", ex);
+            }
         }
 
         public void ExportContacts(string exportPath, IEnumerable<Contact> contacts)
