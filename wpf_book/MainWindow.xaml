@@ -62,13 +62,7 @@
                     <ComboBox ItemsSource="{Binding AvailableThemes}"
                               SelectedItem="{Binding CurrentTheme}"
                               FontSize="16"
-                              Width="120"
-                              Padding="10,5"
-                              Margin="0,0,10,0"/>
-                    <Button Content="🎨 Switch" 
-                            Command="{Binding SwitchThemeCommand}"
-                            CommandParameter="{Binding CurrentTheme}"
-                            Style="{DynamicResource PrimaryButton}"/>
+                              Width="120"/>
                 </StackPanel>
             </Grid>
         </Border>
