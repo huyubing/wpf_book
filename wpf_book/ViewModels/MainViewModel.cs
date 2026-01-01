@@ -39,6 +39,7 @@ namespace wpf_book.ViewModels
             {
                 _currentTheme = value;
                 OnPropertyChanged();
+                SwitchTheme(value);
                 UpdateStatusMessage();
             }
         }
@@ -60,7 +61,6 @@ namespace wpf_book.ViewModels
         public ICommand SaveCommand { get; }
         public ICommand ImportCommand { get; }
         public ICommand ExportCommand { get; }
-        public ICommand SwitchThemeCommand { get; }
 
         public MainViewModel()
         {
@@ -73,7 +73,6 @@ namespace wpf_book.ViewModels
             SaveCommand = new RelayCommand(ExecuteSave);
             ImportCommand = new RelayCommand(ExecuteImport);
             ExportCommand = new RelayCommand(ExecuteExport, CanExecuteExport);
-            SwitchThemeCommand = new RelayCommand(ExecuteSwitchTheme);
 
             LoadContacts();
         }
@@ -209,15 +208,6 @@ namespace wpf_book.ViewModels
                 {
                     MessageBox.Show($"Error importing contacts: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-            }
-        }
-
-        private void ExecuteSwitchTheme(object? parameter)
-        {
-            if (parameter is string themeName)
-            {
-                CurrentTheme = themeName;
-                SwitchTheme(themeName);
             }
         }
 
