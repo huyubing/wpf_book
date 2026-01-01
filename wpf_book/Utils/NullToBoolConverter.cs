@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace wpf_book.Converters
+namespace wpf_book.Utils
 {
     public class NullToBoolConverter : IValueConverter
     {
