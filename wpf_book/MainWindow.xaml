@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpf_book"
         xmlns:views="clr-namespace:wpf_book.Views"
-        xmlns:converters="clr-namespace:wpf_book.Converters"
+        xmlns:utils="clr-namespace:wpf_book.Utils"
         mc:Ignorable="d"
         Title="Address Book" Height="800" Width="1400"
         Background="{DynamicResource BackgroundBrush}">
     
     <Window.Resources>
-        <converters:NullToBoolConverter x:Key="NullToBoolConverter"/>
+        <utils:NullToBoolConverter x:Key="NullToBoolConverter"/>
     </Window.Resources>
     
     <Grid>
