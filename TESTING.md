@@ -31,7 +31,7 @@ dotnet run
 - [ ] Application starts successfully
 - [ ] Main window displays with "Address Book" title
 - [ ] Toolbar is visible with all buttons (Add, Delete, Save, Import, Export)
-- [ ] Theme selector shows current theme as "Light"
+- [ ] Theme selector ComboBox shows current theme as "Light"
 - [ ] Status bar shows "0 contacts | Theme: Light"
 - [ ] Left panel (contact list) is empty
 - [ ] Right panel (edit form) is disabled (grayed out)
@@ -106,8 +106,7 @@ dotnet run
 
 #### Light Theme
 - [ ] Select "Light" from theme dropdown
-- [ ] Click "🎨 Switch" button
-- [ ] Verify UI updates to light colors:
+- [ ] Verify UI updates to light colors immediately:
   - White background
   - Dark text
   - Blue accent colors
@@ -115,8 +114,7 @@ dotnet run
 
 #### Dark Theme
 - [ ] Select "Dark" from theme dropdown
-- [ ] Click "🎨 Switch" button
-- [ ] Verify UI updates to dark colors:
+- [ ] Verify UI updates to dark colors immediately:
   - Dark gray/black background
   - Light text
   - Purple accent colors
@@ -124,8 +122,7 @@ dotnet run
 
 #### Blue Theme
 - [ ] Select "Blue" from theme dropdown
-- [ ] Click "🎨 Switch" button
-- [ ] Verify UI updates to blue colors:
+- [ ] Verify UI updates to blue colors immediately:
   - Light blue background
   - Navy text
   - Blue accent colors
@@ -133,12 +130,18 @@ dotnet run
 
 #### Warm Theme
 - [ ] Select "Warm" from theme dropdown
-- [ ] Click "🎨 Switch" button
-- [ ] Verify UI updates to warm colors:
+- [ ] Verify UI updates to warm colors immediately:
   - Cream/beige background
   - Brown text
   - Orange accent colors
 - [ ] Status bar shows "Theme: Warm"
+
+#### ComboBox Styling
+- [ ] Verify ComboBox has consistent styling with other controls
+- [ ] Verify border, padding, and corner radius match button styles
+- [ ] Verify hover effect on ComboBox (border changes to accent color)
+- [ ] Verify dropdown items are touch-friendly with proper padding
+- [ ] Verify selected item in dropdown is highlighted properly
 
 ### 9. UI/UX Features
 
@@ -164,11 +167,12 @@ dotnet run
 - [ ] Verify border color changes on selection
 
 #### Button Styles
-- [ ] Primary buttons (Add, Save, Switch) have solid color
+- [ ] Primary buttons (Add, Save) have solid color
 - [ ] Ghost buttons (Import, Export) have border style
 - [ ] Danger button (Delete) has red color
 - [ ] Hover effects work on all buttons
 - [ ] Disabled buttons appear grayed out
+- [ ] ComboBox styling matches button styles (consistent border, corner radius, padding)
 
 ### 10. Data Persistence
 
