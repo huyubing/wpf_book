@@ -1,0 +1,92 @@
+﻿<Window x:Class="wpf_book.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wpf_book"
+        xmlns:views="clr-namespace:wpf_book.Views"
+        xmlns:converters="clr-namespace:wpf_book.Converters"
+        mc:Ignorable="d"
+        Title="Address Book" Height="800" Width="1400"
+        Background="{DynamicResource BackgroundBrush}">
+    
+    <Window.Resources>
+        <converters:NullToBoolConverter x:Key="NullToBoolConverter"/>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Toolbar -->
+        <Border Grid.Row="0" 
+                Background="{DynamicResource CardBackgroundBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="0,0,0,1"
+                Padding="15,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Action Buttons -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Button Content="➕ Add" 
+                            Command="{Binding AddCommand}"
+                            Style="{DynamicResource PrimaryButton}"/>
+                    <Button Content="🗑️ Delete" 
+                            Command="{Binding DeleteCommand}"
+                            Style="{DynamicResource DangerButton}"/>
+                    <Button Content="💾 Save" 
+                            Command="{Binding SaveCommand}"
+                            Style="{DynamicResource PrimaryButton}"/>
+                    <Button Content="📥 Import" 
+                            Command="{Binding ImportCommand}"
+                            Style="{DynamicResource GhostButton}"/>
+                    <Button Content="📤 Export" 
+                            Command="{Binding ExportCommand}"
+                            Style="{DynamicResource GhostButton}"/>
+                </StackPanel>
+
+                <!-- Theme Selector -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="Theme:" 
+                               FontSize="16" 
+                               Foreground="{DynamicResource ForegroundBrush}"
+                               VerticalAlignment="Center"
+                               Margin="0,0,10,0"/>
+                    <ComboBox ItemsSource="{Binding AvailableThemes}"
+                              SelectedItem="{Binding CurrentTheme}"
+                              FontSize="16"
+                              Width="120"
+                              Padding="10,5"
+                              Margin="0,0,10,0"/>
+                    <Button Content="🎨 Switch" 
+                            Command="{Binding SwitchThemeCommand}"
+                            CommandParameter="{Binding CurrentTheme}"
+                            Style="{DynamicResource PrimaryButton}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Content Area -->
+        <views:ContactListView Grid.Row="1" DataContext="{Binding}"/>
+
+        <!-- Status Bar -->
+        <StatusBar Grid.Row="2" 
+                   Background="{DynamicResource CardBackgroundBrush}"
+                   BorderBrush="{DynamicResource BorderBrush}"
+                   BorderThickness="0,1,0,0"
+                   Height="40">
+            <StatusBarItem>
+                <TextBlock Text="{Binding StatusMessage}" 
+                           FontSize="16"
+                           Foreground="{DynamicResource ForegroundBrush}"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
